@@ -143,7 +143,7 @@ export function FocusRail({
         <>
             <div
                 className={cn(
-                    "group relative flex h-[680px] w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] flex-col overflow-hidden bg-transparent text-white outline-none select-none overflow-x-hidden",
+                    "group relative flex h-[550px] md:h-[680px] w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] flex-col overflow-hidden bg-transparent text-white outline-none select-none overflow-x-hidden",
                     className
                 )}
                 onMouseEnter={() => setIsHovering(true)}
@@ -156,7 +156,7 @@ export function FocusRail({
                 {/* Folders Bar */}
                 {folders && folders.length > 0 && (
                     <div className="relative z-20 px-4 md:px-8 pt-2 pb-4 flex overflow-x-auto no-scrollbar scroll-smooth">
-                        <div className="flex gap-2 pb-2 mx-auto justify-center">
+                        <div className="flex gap-2 pb-2 mx-auto w-max px-4">
                             {folders.map((folder) => (
                                 <button
                                     key={folder}
@@ -209,7 +209,7 @@ export function FocusRail({
                                 <motion.div
                                     key={absIndex}
                                     className={cn(
-                                        "absolute aspect-[3/4] w-[280px] md:w-[320px] rounded-2xl border-t border-white/20 shadow-2xl transition-shadow duration-300 cursor-pointer overflow-hidden",
+                                        "absolute aspect-[3/4] w-[70vw] max-w-[280px] md:w-[320px] md:max-w-none rounded-2xl border-t border-white/20 shadow-2xl transition-shadow duration-300 cursor-pointer overflow-hidden",
                                         isCenter ? "z-20 shadow-white/5" : "z-10"
                                     )}
                                     initial={false}
@@ -273,65 +273,67 @@ export function FocusRail({
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
             {/* Lightbox Modal */}
             <AnimatePresence>
-                {showLightbox && activeItem && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-12"
-                        onKeyDown={onKeyDown}
-                        tabIndex={0}
-                    >
-                        <button
-                            onClick={() => setShowLightbox(false)}
-                            className="absolute top-6 right-6 z-[110] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-                        >
-                            <X className="w-8 h-8" />
-                        </button>
-
+                {
+                    showLightbox && activeItem && (
                         <motion.div
-                            className="relative w-full h-full flex flex-col items-center justify-center p-4 md:p-12 pb-32 md:pb-40"
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-12"
+                            onKeyDown={onKeyDown}
+                            tabIndex={0}
                         >
-                            <img
-                                src={activeItem.imageSrc}
-                                alt={activeItem.title || ""}
-                                className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl pointer-events-none"
-                            />
+                            <button
+                                onClick={() => setShowLightbox(false)}
+                                className="absolute top-6 right-6 z-[110] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                            >
+                                <X className="w-8 h-8" />
+                            </button>
 
-                            {/* Bottom Navigation Bar */}
-                            <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 w-full px-4">
-                                <div className="text-center text-white space-y-1">
-                                    <p className="text-xs font-mono opacity-50">
-                                        {activeIndex + 1} de {count}
-                                    </p>
-                                </div>
+                            <motion.div
+                                className="relative w-full h-full flex flex-col items-center justify-center p-4 md:p-12 pb-32 md:pb-40"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.9, opacity: 0 }}
+                            >
+                                <img
+                                    src={activeItem.imageSrc}
+                                    alt={activeItem.title || ""}
+                                    className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl pointer-events-none"
+                                />
 
-                                <div className="flex items-center gap-8">
-                                    <button
-                                        onClickCapture={(e) => { e.stopPropagation(); handlePrev(); }}
-                                        className="p-4 rounded-full bg-white/10 text-white hover:bg-white/25 transition-all active:scale-90 border border-white/10 backdrop-blur-md"
-                                    >
-                                        <ChevronLeft className="w-8 h-8" />
-                                    </button>
-                                    <button
-                                        onClickCapture={(e) => { e.stopPropagation(); handleNext(); }}
-                                        className="p-4 rounded-full bg-white/10 text-white hover:bg-white/25 transition-all active:scale-90 border border-white/10 backdrop-blur-md"
-                                    >
-                                        <ChevronRight className="w-8 h-8" />
-                                    </button>
+                                {/* Bottom Navigation Bar */}
+                                <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 w-full px-4">
+                                    <div className="text-center text-white space-y-1">
+                                        <p className="text-xs font-mono opacity-50">
+                                            {activeIndex + 1} de {count}
+                                        </p>
+                                    </div>
+
+                                    <div className="flex items-center gap-8">
+                                        <button
+                                            onClickCapture={(e) => { e.stopPropagation(); handlePrev(); }}
+                                            className="p-4 rounded-full bg-white/10 text-white hover:bg-white/25 transition-all active:scale-90 border border-white/10 backdrop-blur-md"
+                                        >
+                                            <ChevronLeft className="w-8 h-8" />
+                                        </button>
+                                        <button
+                                            onClickCapture={(e) => { e.stopPropagation(); handleNext(); }}
+                                            className="p-4 rounded-full bg-white/10 text-white hover:bg-white/25 transition-all active:scale-90 border border-white/10 backdrop-blur-md"
+                                        >
+                                            <ChevronRight className="w-8 h-8" />
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )
+                }
+            </AnimatePresence >
         </>
     );
 }
