@@ -146,8 +146,8 @@ export function FocusRail({
                     "group relative flex h-[550px] md:h-[680px] flex-col overflow-hidden bg-transparent text-white outline-none select-none overflow-x-hidden",
                     // Mobile: Full screen width breakout
                     "w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]",
-                    // Desktop: Constrained width, no breakout
-                    "md:w-full md:max-w-lg md:left-auto md:right-auto md:ml-auto md:mr-auto",
+                    // Desktop: Full width of central container (breakout of p-8/2rem padding)
+                    "md:w-[calc(100%+4rem)] md:max-w-none md:left-auto md:right-auto md:-ml-8 md:-mr-8",
                     className
                 )}
                 onMouseEnter={() => setIsHovering(true)}
