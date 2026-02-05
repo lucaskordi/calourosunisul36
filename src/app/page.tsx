@@ -1,65 +1,55 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import { Cover } from "@/components/sections/Cover";
+import { PBL } from "@/components/sections/PBL";
+import { Conferences } from "@/components/sections/Conferences";
+import { Disciplines } from "@/components/sections/Disciplines";
+import { NCS } from "@/components/sections/NCS";
+import { HM } from "@/components/sections/HM";
+import { PMSUS } from "@/components/sections/PMSUS";
+import { Metodologia } from "@/components/sections/Metodologia";
+import { Evaluations } from "@/components/sections/Evaluations";
+import { Results } from "@/components/sections/Results";
+import { Materials } from "@/components/sections/Materials";
+import { Schedule } from "@/components/sections/Schedule";
+import { Trotes } from "@/components/sections/Trotes";
+import { Dipiroma } from "@/components/sections/Dipiroma";
+import { Comissao } from "@/components/sections/Comissao";
+import { Ligas } from "@/components/sections/Ligas";
+import { AAAMUPB } from "@/components/sections/AAAMUPB";
+import { CAMC } from "@/components/sections/CAMC";
+import { Voluntariado } from "@/components/sections/Voluntariado";
+import { Final } from "@/components/sections/Final";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { Header } from "@/components/ui/Header";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="flex flex-col min-h-screen bg-neutral-dark text-primary-light">
+      <Header />
+      <div id="top" />
+      <Cover />
+      <div id="pbl"><PBL /></div>
+      <div id="conferencias"><Conferences /></div>
+      <div id="disciplinas"><Disciplines /></div>
+      <div id="ncs"><NCS /></div>
+      <div id="hm"><HM /></div>
+      <div id="pmsus"><PMSUS /></div>
+      <div id="metodologia"><Metodologia /></div>
+      <div id="avaliacoes"><Evaluations /></div>
+      <div id="resultados"><Results /></div>
+      <div id="materiais"><Materials /></div>
+      <div id="horarios"><Schedule /></div>
+      <div id="trotes"><Trotes /></div>
+      <div id="dipiroma"><Dipiroma /></div>
+      <div id="comissao"><Comissao /></div>
+      <div id="ligas"><Ligas /></div>
+      <div id="camc"><CAMC /></div>
+      <div id="voluntariado"><Voluntariado /></div>
+      <div id="aaamupb"><AAAMUPB /></div>
+      <Final />
+      <ScrollToTop />
+    </main>
   );
 }

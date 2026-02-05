@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #222123;
+  --foreground: #dde0bd;
+
+  --primary-light: #dde0bd;
+  --primary: #b5b687;
+  --accent: #217871;
+  --green-dark: #0a4e4a;
+  --green-deep: #0b3633;
+  --neutral-dark: #222123;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-primary-light: var(--primary-light);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-green-dark: var(--green-dark);
+  --color-green-deep: var(--green-deep);
+  --color-neutral-dark: var(--neutral-dark);
+
+  --font-erstoria: var(--font-erstoria);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-erstoria), sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-white/10;
+  }
 }
