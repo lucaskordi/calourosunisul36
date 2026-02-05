@@ -54,7 +54,7 @@ export function Cover() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce z-20"
+                className="absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce z-20"
             >
                 <span className="text-xs uppercase tracking-widest opacity-40 mb-2">Role para baixo</span>
                 <div className="w-px h-8 bg-primary/20" />
