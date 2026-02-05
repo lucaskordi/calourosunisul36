@@ -31,7 +31,8 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: #000;
+  /* Deep black background for margins */
   color: var(--foreground);
   font-family: var(--font-erstoria), sans-serif;
   overflow-x: hidden;

@@ -29,26 +29,30 @@ export default function Home() {
     <main className="flex flex-col min-h-screen bg-neutral-dark text-primary-light">
       <Header />
       <div id="top" />
-      <Cover />
-      <div id="pbl"><PBL /></div>
-      <div id="conferencias"><Conferences /></div>
-      <div id="disciplinas"><Disciplines /></div>
-      <div id="ncs"><NCS /></div>
-      <div id="hm"><HM /></div>
-      <div id="pmsus"><PMSUS /></div>
-      <div id="metodologia"><Metodologia /></div>
-      <div id="avaliacoes"><Evaluations /></div>
-      <div id="resultados"><Results /></div>
-      <div id="materiais"><Materials /></div>
-      <div id="horarios"><Schedule /></div>
-      <div id="trotes"><Trotes /></div>
-      <div id="dipiroma"><Dipiroma /></div>
-      <div id="comissao"><Comissao /></div>
-      <div id="ligas"><Ligas /></div>
-      <div id="camc"><CAMC /></div>
-      <div id="voluntariado"><Voluntariado /></div>
-      <div id="aaamupb"><AAAMUPB /></div>
-      <Final />
+
+      {/* Mobile-on-Desktop Container */}
+      <div className="w-full md:max-w-md md:mx-auto bg-neutral-dark md:shadow-[0_0_50px_rgba(0,0,0,0.5)] md:min-h-screen">
+        <Cover />
+        <div id="pbl"><PBL /></div>
+        <div id="conferencias"><Conferences /></div>
+        <div id="disciplinas"><Disciplines /></div>
+        <div id="ncs"><NCS /></div>
+        <div id="hm"><HM /></div>
+        <div id="pmsus"><PMSUS /></div>
+        <div id="metodologia"><Metodologia /></div>
+        <div id="avaliacoes"><Evaluations /></div>
+        <div id="resultados"><Results /></div>
+        <div id="materiais"><Materials /></div>
+        <div id="horarios"><Schedule /></div>
+        <div id="trotes"><Trotes /></div>
+        <div id="dipiroma"><Dipiroma /></div>
+        <div id="comissao"><Comissao /></div>
+        <div id="ligas"><Ligas /></div>
+        <div id="camc"><CAMC /></div>
+        <div id="voluntariado"><Voluntariado /></div>
+        <div id="aaamupb"><AAAMUPB /></div>
+        <Final />
+      </div>
       <ScrollToTop />
     </main>
   );

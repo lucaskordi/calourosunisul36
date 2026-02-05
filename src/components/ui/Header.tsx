@@ -32,7 +32,7 @@ export function Header() {
             }}
             animate={hidden ? "hidden" : "visible"}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between"
+            className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none"
         >
             <div
                 className={cn(
@@ -41,21 +41,23 @@ export function Header() {
                 )}
             />
 
-            <div className="relative flex items-center gap-2">
-                <Image
-                    src="/logoformo.svg"
-                    alt="Formo"
-                    width={40}
-                    height={12}
-                    className="object-contain"
-                />
-                <span className="font-bold text-xs uppercase tracking-[0.2em] text-primary-light/80 hidden xs:block">
-                    Medicina PB
-                </span>
-            </div>
+            <div className="w-full max-w-md md:max-w-md px-6 py-4 flex items-center justify-between pointer-events-auto">
+                <div className="relative flex items-center gap-2">
+                    <Image
+                        src="/logoformo.svg"
+                        alt="Formo"
+                        width={40}
+                        height={12}
+                        className="object-contain"
+                    />
+                    <span className="font-bold text-xs uppercase tracking-[0.2em] text-primary-light/80 hidden xs:block">
+                        Medicina PB
+                    </span>
+                </div>
 
-            <div className="relative">
-                <Menu />
+                <div className="relative">
+                    <Menu />
+                </div>
             </div>
         </motion.header>
     );
