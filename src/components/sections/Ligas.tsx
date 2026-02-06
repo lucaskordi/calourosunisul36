@@ -165,7 +165,7 @@ export function Ligas() {
                             </defs>
                             <text className="text-[9.5px] uppercase font-bold tracking-widest fill-current font-mono">
                                 <textPath href="#circlePath" startOffset="0%" textLength="232" lengthAdjust="spacing">
-                                    RECOMENDAÇÃO MARIA CLARA GUERRA KOCH •
+                                    RECOMENDAÇÃO MARIA CLARA GUERRA KOCH {"\u00A0"} • {"\u00A0"}
                                 </textPath>
                             </text>
                         </svg>
