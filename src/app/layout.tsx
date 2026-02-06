@@ -22,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${erstoria.variable} font-erstoria antialiased`}>
+      <body
+        className={`${erstoria.variable} font-erstoria antialiased`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

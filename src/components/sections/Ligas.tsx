@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 export function Ligas() {
     const [searchTerm, setSearchTerm] = useState("");
 
+    const specialLiga = { handle: "@liaccunisul", name: "Anatomia clínica e cirúrgica" };
+
     const ligas = [
         { handle: "@lagou.unisul", name: "Ginecologia e obstetrícia (GO)" },
         { handle: "@lanenunisul", name: "Neurologia e neurocirurgia" },
@@ -30,7 +32,7 @@ export function Ligas() {
         { handle: "@lapsiqunisulpb", name: "Psiquiatria" },
         { handle: "@lot.celso", name: "Ortopedia e traumatologia HGCR" },
         { handle: "@laorthrsj", name: "Ortopedia e traumatologia HRSJ" },
-        { handle: "@liaccunisul", name: "Anatomia clínica e cirúrgica" },
+        // { handle: "@liaccunisul", name: "Anatomia clínica e cirúrgica" }, // Removed from here
         { handle: "@laqf_unisulpb", name: "Queimaduras e feridas" },
         { handle: "@laendounisulpb", name: "Endocrinologia e metabologia" },
         { handle: "@lafam.unisul", name: "Farmacologia médica" },
@@ -68,6 +70,7 @@ export function Ligas() {
         { handle: "@coliga_unisulpb", name: "Comissão de ligas acadêmicas" },
     ];
 
+    // Filter only the standard ligas
     const filtered = ligas.filter(l =>
         l.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         l.handle.toLowerCase().includes(searchTerm.toLowerCase())
@@ -89,6 +92,29 @@ export function Ligas() {
 
     return (
         <Section bg="default" className="justify-start">
+            <style jsx global>{`
+                @keyframes spin-slow {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                .animate-spin-slow {
+                    animation: spin-slow 8s linear infinite;
+                }
+                @keyframes spin-reverse {
+                    from { transform: rotate(360deg); }
+                    to { transform: rotate(0deg); }
+                }
+                .animate-spin-reverse {
+                    animation: spin-reverse 8s linear infinite;
+                }
+                @keyframes pulse-neon {
+                    0%, 100% { box-shadow: 0 0 5px #00ff9d, 0 0 10px #00ff9d, 0 0 20px #00ff9d; }
+                    50% { box-shadow: 0 0 2px #00ff9d, 0 0 5px #00ff9d, 0 0 10px #00ff9d; }
+                }
+                .neon-pulse {
+                    animation: pulse-neon 2s infinite;
+                }
+            `}</style>
             <div className="flex items-center gap-3 mb-6">
                 <div className="bg-accent p-2 rounded-lg">
                     <Instagram className="w-6 h-6 text-primary-light" />
@@ -111,7 +137,57 @@ export function Ligas() {
                 />
             </div>
 
-            <div className="flex-1 overflow-y-auto pr-2 space-y-3 scrollbar-hide min-h-[400px]">
+            {/* Special Pinned Liga: Anatomia - Moved outside scroll container */}
+            <motion.a
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                href={`https://instagram.com/${specialLiga.handle.substring(1)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative flex items-center justify-between p-5 bg-green-dark/40 border-2 border-[#00ff9d] rounded-2xl transition-all group neon-pulse mb-6 mt-2 overflow-visible mx-1"
+            >
+                <div>
+                    <div className="text-base font-bold text-[#00ff9d] mb-0.5">{specialLiga.name}</div>
+                    <div className="text-xs text-primary font-medium">{specialLiga.handle}</div>
+                </div>
+
+                {/* Rotating Badge */}
+                <div className="absolute -top-4 -right-4 w-28 h-28 pointer-events-none flex items-center justify-center">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black/80 rounded-full blur-md"></div>
+                        {/* Rotating Text Ring */}
+                        <svg className="w-full h-full animate-spin-slow text-[#00ff9d] relative z-10" viewBox="0 0 100 100">
+                            <defs>
+                                <path
+                                    id="circlePath"
+                                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                                />
+                            </defs>
+                            <text className="text-[9.5px] uppercase font-bold tracking-widest fill-current font-mono">
+                                <textPath href="#circlePath" startOffset="0%" textLength="232" lengthAdjust="spacing">
+                                    RECOMENDAÇÃO MARIA CLARA GUERRA KOCH •
+                                </textPath>
+                            </text>
+                        </svg>
+                        {/* Centered Avatar */}
+                        <div className="absolute inset-0 m-auto flex items-center justify-center z-20">
+                            <div className="w-14 h-14 rounded-full border border-[#00ff9d] flex items-center justify-center overflow-hidden bg-black/60">
+                                <img
+                                    src="/mariaclara.jpg"
+                                    alt="Maria Clara Koch"
+                                    className="w-full h-full object-cover animate-spin-reverse"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <ExternalLink className="w-4 h-4 text-[#00ff9d] opacity-100" />
+            </motion.a>
+
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-hide min-h-[400px]">
+
+
                 {currentItems.map((liga, index) => (
                     <motion.a
                         key={liga.handle}
@@ -131,7 +207,7 @@ export function Ligas() {
                     </motion.a>
                 ))}
                 {filtered.length === 0 && (
-                    <p className="text-center opacity-40 text-sm mt-10 italic">Nenhuma liga encontrada...</p>
+                    <p className="text-center opacity-40 text-sm mt-10 italic">Nenhuma outra liga encontrada...</p>
                 )}
             </div>
 

@@ -24,7 +24,7 @@ export function Section({ children, className, id, bg = "default" }: SectionProp
         <section
             id={id}
             className={cn(
-                "w-full flex flex-col p-8 py-20 relative overflow-hidden",
+                "w-full flex flex-col p-8 py-20 relative overflow-visible",
                 bgColors[bg],
                 className
             )}
