@@ -17,6 +17,7 @@ import { Trotes } from "@/components/sections/Trotes";
 import { Dipiroma } from "@/components/sections/Dipiroma";
 import { Comissao } from "@/components/sections/Comissao";
 import { Ligas } from "@/components/sections/Ligas";
+import { IFMSA } from "@/components/sections/IFMSA";
 import { AAAMUPB } from "@/components/sections/AAAMUPB";
 import { CAMC } from "@/components/sections/CAMC";
 import { Voluntariado } from "@/components/sections/Voluntariado";
@@ -48,6 +49,7 @@ export default function Home() {
         <div id="dipiroma"><Dipiroma /></div>
         <div id="comissao"><Comissao /></div>
         <div id="ligas"><Ligas /></div>
+        <div id="ifmsa"><IFMSA /></div>
         <div id="camc"><CAMC /></div>
         <div id="voluntariado"><Voluntariado /></div>
         <div id="aaamupb"><AAAMUPB /></div>

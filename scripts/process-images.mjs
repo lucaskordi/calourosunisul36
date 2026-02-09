@@ -13,7 +13,7 @@ const b2 = new B2({
 });
 
 const BUCKET_ID = process.env.NEXT_PUBLIC_B2_BUCKET_ID;
-const CONCURRENCY = 1;
+const CONCURRENCY = 3;
 
 function slugify(text) {
     return text
@@ -224,19 +224,44 @@ async function processFileWrapper(fullPath, b2Path) {
     if (!fs.existsSync('temp_webp')) fs.mkdirSync('temp_webp');
 
     try {
+        let pipeline = sharp(fullPath).rotate();
+
+        // Resize JuMed photos to 50% resolution as requested
+        if (b2Path.includes('vii-jumed')) {
+            const metadata = await sharp(fullPath).metadata();
+            if (metadata.width && metadata.height) {
+                pipeline = pipeline.resize({
+                    width: Math.round(metadata.width * 0.5),
+                    height: Math.round(metadata.height * 0.5),
+                    fit: 'inside'
+                });
+                // console.log(`Resizing JuMed: ${file} (to 50%)`);
+            }
+        }
+
         if (ext === '.heic') {
             const tempJpg = path.join('temp_webp', `${tempId}_temp.jpg`);
             execSync(`sips -s format jpeg "${fullPath}" --out "${tempJpg}"`, { stdio: 'ignore' });
-            await sharp(tempJpg).rotate().webp({ quality: 80 }).toFile(webpPath);
+            // Using a new sharp instance for HEIC-to-JPG-to-WebP to apply resize if needed
+            let heicPipeline = sharp(tempJpg).rotate();
+            if (b2Path.includes('vii-jumed')) {
+                const meta = await heicPipeline.metadata();
+                heicPipeline = heicPipeline.resize({
+                    width: Math.round(meta.width * 0.5),
+                    height: Math.round(meta.height * 0.5),
+                    fit: 'inside'
+                });
+            }
+            await heicPipeline.webp({ quality: 80 }).toFile(webpPath);
             fs.unlinkSync(tempJpg);
         } else {
-            await sharp(fullPath).rotate().webp({ quality: 80 }).toFile(webpPath);
+            await pipeline.webp({ quality: 80 }).toFile(webpPath);
         }
         await uploadFile(webpPath, b2Path);
         if (fs.existsSync(webpPath)) fs.unlinkSync(webpPath);
     } catch (err) {
         console.error(`Conversion error ${file}:`, err.message);
-        processedCount++; // count failed as processed to keep progress moving?
+        processedCount++;
     }
 }
 

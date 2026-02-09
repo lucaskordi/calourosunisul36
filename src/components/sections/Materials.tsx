@@ -14,7 +14,12 @@ export function Materials() {
         {
             name: "Jalecos",
             icon: <Shirt className="w-5 h-5 text-primary" />,
-            note: "Essencial para laboratórios e UBS. Tenha pelo menos dois para revezamento."
+            note: "Essencial para laboratórios e UBS. Tenha pelo menos dois para revezamento.",
+            images: [
+                "/images/jalecos/jaleco01.jpeg",
+                "/images/jalecos/jaleco02.jpeg",
+                "/images/jalecos/jaleco03.jpeg"
+            ]
         },
         {
             name: "Termômetro & Fita Métrica",
@@ -45,9 +50,47 @@ export function Materials() {
                             {item.icon}
                             <h3 className="text-xl font-bold">{item.name}</h3>
                         </div>
-                        <p className="text-sm opacity-90 leading-relaxed italic border-l-2 border-accent pl-4">
+                        <p className="text-sm opacity-90 leading-relaxed italic border-l-2 border-accent pl-4 mb-4">
                             "{item.note}"
                         </p>
+
+                        {(item as any).images && (item as any).images.length > 0 && (
+                            <div className="mt-4">
+                                <div className="text-[10px] uppercase font-bold text-primary/60 mb-2 px-2">
+                                    Exemplos de Bordado:
+                                </div>
+                                <div className="flex gap-3 overflow-x-auto pb-4 snap-x no-scrollbar">
+                                    {(item as any).images.map((img: string, i: number) => (
+                                        <div
+                                            key={i}
+                                            className="min-w-[85%] snap-center rounded-xl overflow-hidden border border-primary/20 bg-neutral-dark/50 p-1 shadow-xl relative"
+                                        >
+                                            <img
+                                                src={img}
+                                                alt={`Exemplo de ${item.name} ${i + 1}`}
+                                                className="w-full h-auto rounded-lg"
+                                            />
+                                        </div>
+                                    ))}
+                                    {(item as any).images.length === 0 && (
+                                        <div className="min-w-[85%] snap-center rounded-xl border border-dashed border-primary/20 bg-primary/5 p-4 flex flex-col items-center justify-center text-center">
+                                            <Shirt className="w-8 h-8 text-primary/20 mb-2" />
+                                            <p className="text-[10px] opacity-40 uppercase tracking-wider font-bold">
+                                                Aguardando fotos...
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="flex justify-center gap-1.5 mt-[-8px]">
+                                    {(item as any).images.map((_: any, dotIndex: number) => (
+                                        <div
+                                            key={dotIndex}
+                                            className="h-1 rounded-full w-4 bg-primary"
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </motion.div>
                 ))}
 
